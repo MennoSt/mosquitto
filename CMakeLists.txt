@@ -33,7 +33,7 @@ option(WITH_TLS_PSK
 option(WITH_EC
 	"Include Elliptic Curve support (requires WITH_TLS)?" ON)
 if (WITH_TLS)
-	find_package(OpenSSL REQUIRED)
+	find_package(openssl REQUIRED)
 	add_definitions("-DWITH_TLS")
 
 	if (WITH_TLS_PSK)
@@ -44,7 +44,7 @@ if (WITH_TLS)
 		add_definitions("-DWITH_EC")
 	endif (WITH_EC)
 else (WITH_TLS)
-	set (OPENSSL_INCLUDE_DIR "")
+	# set (OPENSSL_INCLUDE_DIR "")
 endif (WITH_TLS)
 
 
@@ -92,6 +92,7 @@ endif (WITH_THREADING)
 
 option(WITH_DLT "Include DLT support?" OFF)
 message(STATUS "WITH_DLT = ${WITH_DLT}")
+message(STATUS "WITH_TLS = ${WITH_TLS}")
 if (WITH_DLT)
 	#find_package(DLT REQUIRED)
 	find_package(PkgConfig)

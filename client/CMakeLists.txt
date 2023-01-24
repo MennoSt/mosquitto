@@ -6,7 +6,7 @@ endif (WITH_SRV)
 
 set( CLIENT_INC ${mosquitto_SOURCE_DIR} ${mosquitto_SOURCE_DIR}/include
             ${STDBOOL_H_PATH} ${STDINT_H_PATH} ${PTHREAD_INCLUDE_DIR}
-            ${OPENSSL_INCLUDE_DIR})
+            )
 
 set( CLIENT_DIR ${mosquitto_BINARY_DIR}/lib)
 
@@ -30,19 +30,19 @@ if (CJSON_FOUND)
 endif()
 
 if (WITH_STATIC_LIBRARIES)
-	target_link_libraries(mosquitto_pub libmosquitto_static)
-	target_link_libraries(mosquitto_sub libmosquitto_static)
-	target_link_libraries(mosquitto_rr libmosquitto_static)
+	target_link_libraries(mosquitto_pub libmosquitto_static ssl crypto)
+	target_link_libraries(mosquitto_sub libmosquitto_static ssl crypto)
+	target_link_libraries(mosquitto_rr libmosquitto_static ssl crypto)
 else()
-	target_link_libraries(mosquitto_pub libmosquitto)
-	target_link_libraries(mosquitto_sub libmosquitto)
-	target_link_libraries(mosquitto_rr libmosquitto)
+	target_link_libraries(mosquitto_pub libmosquitto ssl crypto)
+	target_link_libraries(mosquitto_sub libmosquitto ssl crypto)
+	target_link_libraries(mosquitto_rr libmosquitto ssl crypto)
 endif()
 
 if (QNX)
-    target_link_libraries(mosquitto_pub socket)
-    target_link_libraries(mosquitto_sub socket)
-    target_link_libraries(mosquitto_rr socket)
+    target_link_libraries(mosquitto_pub socket ssl crypto)
+    target_link_libraries(mosquitto_sub socket ssl crypto)
+    target_link_libraries(mosquitto_rr socket ssl crypto)
 endif()
 
 install(TARGETS mosquitto_pub RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")

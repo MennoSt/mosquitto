@@ -3,7 +3,7 @@ if (CJSON_FOUND AND WITH_TLS)
 
 	set( CLIENT_INC ${mosquitto_SOURCE_DIR} ${mosquitto_SOURCE_DIR}/include
 		${STDBOOL_H_PATH} ${STDINT_H_PATH} ${PTHREAD_INCLUDE_DIR}
-		${OPENSSL_INCLUDE_DIR} ${mosquitto_SOURCE_DIR}/deps
+		${mosquitto_SOURCE_DIR}/deps
 		${mosquitto_SOURCE_DIR}/src
 		${CJSON_INCLUDE_DIRS} )
 
@@ -32,7 +32,9 @@ if (CJSON_FOUND AND WITH_TLS)
 	)
 	set_target_properties(mosquitto_dynamic_security PROPERTIES PREFIX "")
 
-	target_link_libraries(mosquitto_dynamic_security ${CJSON_LIBRARIES} ${OPENSSL_LIBRARIES})
+	target_link_libraries(mosquitto_dynamic_security ${CJSON_LIBRARIES}
+	ssl
+	crypto)
 	if(WIN32)
 		target_link_libraries(mosquitto_dynamic_security mosquitto)
 		install(TARGETS mosquitto_dynamic_security

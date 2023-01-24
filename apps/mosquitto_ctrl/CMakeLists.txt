@@ -3,7 +3,7 @@ if (WITH_TLS AND CJSON_FOUND)
 
 	include_directories(${mosquitto_SOURCE_DIR} ${mosquitto_SOURCE_DIR}/include
 			${mosquitto_SOURCE_DIR}/lib ${mosquitto_SOURCE_DIR}/src
-			${OPENSSL_INCLUDE_DIR} ${STDBOOL_H_PATH} ${STDINT_H_PATH}
+			${STDBOOL_H_PATH} ${STDINT_H_PATH}
 			${CJSON_INCLUDE_DIRS} ${mosquitto_SOURCE_DIR}/apps/mosquitto_passwd)
 
 	link_directories(${CJSON_DIR})
@@ -42,7 +42,7 @@ if (WITH_TLS AND CJSON_FOUND)
 		endif (APPLE)
 	endif (UNIX)
 
-	target_link_libraries(mosquitto_ctrl ${OPENSSL_LIBRARIES} ${CJSON_LIBRARIES})
+	target_link_libraries(mosquitto_ctrl ssl crypto ${CJSON_LIBRARIES})
 
 	install(TARGETS mosquitto_ctrl RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 endif (WITH_TLS AND CJSON_FOUND)

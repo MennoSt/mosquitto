@@ -1,6 +1,6 @@
 include_directories(${mosquitto_SOURCE_DIR} ${mosquitto_SOURCE_DIR}/src
 		${mosquitto_SOURCE_DIR}/include ${mosquitto_SOURCE_DIR}/lib
-		${OPENSSL_INCLUDE_DIR} ${STDBOOL_H_PATH} ${STDINT_H_PATH})
+		${STDBOOL_H_PATH} ${STDINT_H_PATH})
 
 set (MOSQ_SRCS
 	../lib/alias_mosq.c ../lib/alias_mosq.h
@@ -157,7 +157,7 @@ if (WITH_DLT)
     set (MOSQ_LIBS ${MOSQ_LIBS} ${DLT_LIBRARIES})
 endif (WITH_DLT)
 
-set (MOSQ_LIBS ${MOSQ_LIBS} ${OPENSSL_LIBRARIES})
+set (MOSQ_LIBS ${MOSQ_LIBS})
 # Check for getaddrinfo_a
 include(CheckLibraryExists)
 check_library_exists(anl getaddrinfo_a  "" HAVE_GETADDRINFO_A)
