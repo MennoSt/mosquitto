@@ -33,7 +33,7 @@ option(WITH_TLS_PSK
 option(WITH_EC
 	"Include Elliptic Curve support (requires WITH_TLS)?" ON)
 if (WITH_TLS)
-	find_package(OpenSSL REQUIRED)
+	find_package(openssl REQUIRED)
 	add_definitions("-DWITH_TLS")
 
 	if (WITH_TLS_PSK)
