@@ -45,6 +45,10 @@ if (QNX)
     target_link_libraries(mosquitto_rr socket)
 endif()
 
+target_link_libraries(mosquitto_pub ssl)
+target_link_libraries(mosquitto_sub ssl)
+target_link_libraries(mosquitto_rr ssl)
+
 install(TARGETS mosquitto_pub RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(TARGETS mosquitto_sub RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(TARGETS mosquitto_rr RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
