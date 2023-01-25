@@ -204,6 +204,7 @@ if (WITH_WEBSOCKETS)
 	endif (STATIC_WEBSOCKETS)
 endif (WITH_WEBSOCKETS)
 
+set (MOSQ_LIBS ${MOSQ_LIBS} ssl crypto)
 add_executable(mosquitto ${MOSQ_SRCS})
 target_link_libraries(mosquitto ${MOSQ_LIBS} OpenSSL::SSL OpenSSL::Crypto)
 if (WIN32)
